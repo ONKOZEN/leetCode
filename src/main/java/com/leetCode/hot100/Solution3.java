@@ -7,34 +7,28 @@ import java.util.Map;
 
 public class Solution3 {
     public static void main(String[] args) {
-        String s = "dvdf";
+        String s = "ababcabcd";
         System.out.println(new Solution3().lengthOfLongestSubstring(s));
+
     }
 
     public int lengthOfLongestSubstring(String s) {
-        if (s == null || "".equals(s)) {
+        if (s == null) {
             return 0;
-        } else if (s.length() == 1) {
-            return 1;
         }
-        char[] c = s.toCharArray();
-        Map<Character, Integer> list = new HashMap<>();
-        int rec = 0;
-        int lastFlag = 0;
-        int startFlag = 0;
-        for (int i = 0; i < c.length; i++) {
-            if (list.containsKey(c[i])) {
-                rec = Math.max(rec, i - list.get(c[i]));
-                lastFlag = i;
-                list.clear();
-            } else if (i == c.length - 1) {
-                rec = Math.max(rec, i - lastFlag + 1);
-                lastFlag = i;
-                list.clear();
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int flag = 0;
+            for (int j = i+1; j < s.length(); j++) {
+             if(s.substring(i,j).contains(s.substring(j))){
+                 flag = j-i;
+                 break;
+             }else {
+                 flag+=1;
+             }
             }
-            list.put(c[i], i);
+            res = Math.max(res,flag);
         }
-        return rec;
-
+        return res;
     }
 }
