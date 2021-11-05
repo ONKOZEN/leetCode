@@ -1,4 +1,4 @@
-package com.leetCode.hot100.datas;
+package com.datas;
 
 import java.util.LinkedList;
 import java.util.Queue;
