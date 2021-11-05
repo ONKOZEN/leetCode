@@ -12,6 +12,7 @@ public class Bfs {
         treeNode.left.right = new TreeNode(5);
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(7);
+        bfs(treeNode);
 
 
     }
@@ -20,9 +21,13 @@ public class Bfs {
         queue.offer(treeNode);
         while (!queue.isEmpty()){
             TreeNode treeNode1 = queue.poll();
-            if(){
-
+            if(treeNode1.left!=null){
+                queue.offer(treeNode1.left);
             }
+            if(treeNode1.right!=null){
+                queue.offer(treeNode1.right);
+            }
+            System.out.print(treeNode1.value);
         }
 
     }
