@@ -16,15 +16,19 @@ public class Bfs {
 
 
     }
-    public static void bfs(TreeNode treeNode){
+
+    public static void bfs(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
+        }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(treeNode);
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             TreeNode treeNode1 = queue.poll();
-            if(treeNode1.left!=null){
+            if (treeNode1.left != null) {
                 queue.offer(treeNode1.left);
             }
-            if(treeNode1.right!=null){
+            if (treeNode1.right != null) {
                 queue.offer(treeNode1.right);
             }
             System.out.print(treeNode1.value);
@@ -32,7 +36,8 @@ public class Bfs {
 
     }
 }
-class TreeNode{
+
+class TreeNode {
     TreeNode left;
     TreeNode right;
     Integer value;
