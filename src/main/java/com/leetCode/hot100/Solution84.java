@@ -1,18 +1,37 @@
 package com.leetCode.hot100;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class Solution84 {
     public static void main(String[] args) {
 
     }
+
+    public int largestRectangleArea1(int[] heights) {
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+        int[] num = largestRectangleAreaMonitor(heights);
+        Deque<Integer> deque = new ArrayDeque<>();
+        int res = 0;
+        for (int i = 0; i < num.length; i++) {
+            while (!deque.isEmpty() && num[deque.peek()] > num[i]) {
+                int cur = deque.pop();
+                res = Math.max(res, num[cur] * (i - deque.peek() - 1));
+            }
+            deque.push(i);
+        }
+        return res;
+    }
+
     public int[] largestRectangleAreaMonitor(int[] heights) {
         if (heights == null || heights.length == 0) {
             return null;
         }
-        int[] h = new int[heights.length+2];
-        h[0] = 0;
-        h[h.length-1]= 0;
-        for (int i = 1; i < h.length-1; i++) {
-            h[i] = heights[i-1];
+        int[] h = new int[heights.length + 2];
+        for (int i = 1; i < h.length - 1; i++) {
+            h[i] = heights[i - 1];
         }
         return h;
     }
